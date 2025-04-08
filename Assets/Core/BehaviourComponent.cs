@@ -1,5 +1,5 @@
 using System;
-using UniRx;
+using R3;
 using UnityEngine;
 
 namespace Core
@@ -22,21 +22,21 @@ namespace Core
         protected virtual void Awake()
         {
             Transform = GetComponent<Transform>();
-
+            
             Observable
                 .EveryUpdate()
                 .Subscribe(_ => { Tick(); })
                 .AddTo(_disposable);
             Observable
-                .EveryFixedUpdate()
+                .EveryUpdate()
                 .Subscribe(_ => { FixedTick(); })
                 .AddTo(_disposable);
             Observable
-                .EveryLateUpdate()
+                .EveryUpdate()
                 .Subscribe(_ => { LateTick(); })
                 .AddTo(_disposable);
             Observable
-                .EveryEndOfFrame()
+                .EveryUpdate()
                 .Subscribe(_ => { EndOfFrame(); })
                 .AddTo(_disposable);
             AwakeEvent?.Invoke();
