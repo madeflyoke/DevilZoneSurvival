@@ -24,22 +24,19 @@ namespace Core
             Transform = GetComponent<Transform>();
             
             Observable
-                .EveryUpdate()
+                .EveryUpdate(UnityFrameProvider.Update)
                 .Subscribe(_ => { Tick(); })
                 .AddTo(_disposable);
             Observable
-                .EveryUpdate()
+                .EveryUpdate(UnityFrameProvider.FixedUpdate)
                 .Subscribe(_ => { FixedTick(); })
                 .AddTo(_disposable);
             Observable
-                .EveryUpdate()
+                .EveryUpdate(UnityFrameProvider.PostFixedUpdate)
                 .Subscribe(_ => { LateTick(); })
                 .AddTo(_disposable);
-            Observable
-                .EveryUpdate()
-                .Subscribe(_ => { EndOfFrame(); })
-                .AddTo(_disposable);
             AwakeEvent?.Invoke();
+            
         }
         protected virtual void Start() => StartEvent?.Invoke();
         protected virtual void OnEnable() => EnableEvent?.Invoke();
@@ -48,7 +45,6 @@ namespace Core
         protected virtual void Tick() { }
         protected virtual void FixedTick() { }
         protected virtual void LateTick() { }
-        protected virtual void EndOfFrame() { }
         
         protected virtual void OnDestroy()
         {
