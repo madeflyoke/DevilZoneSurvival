@@ -35,6 +35,7 @@ namespace Core
                 .EveryUpdate(UnityFrameProvider.PostFixedUpdate)
                 .Subscribe(_ => { LateTick(); })
                 .AddTo(_disposable);
+            
             AwakeEvent?.Invoke();
             
         }
