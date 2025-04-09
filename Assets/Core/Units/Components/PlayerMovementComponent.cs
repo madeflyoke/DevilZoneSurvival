@@ -1,20 +1,22 @@
 using System;
 using Core.Scripts.Enums;
+using Core.Scripts.Utils;
 using UnityEngine;
 
 namespace Core.Scripts.Units.Components
 {
+    [ComponentName("Player Movement")]
     [Serializable]
-    public class MoveComponent : UnitComponentBase
+    public class PlayerMovementComponent : UnitComponentBase
     {
         [Serializable]
-        public class MovementContext
+        public class Context
         {
             public float MovementSpeed;
         }
         
-        [SerializeField] private MovementContext _movementContext;
-    
+        [SerializeField] private Context _pmContext;
+        
         public override void Execute()
         {
             var directions = MovementDirection.None;
@@ -48,23 +50,31 @@ namespace Core.Scripts.Units.Components
                 return pos;
             }
             
-            var step = Time.deltaTime * _movementContext.MovementSpeed;
+            var direction = Vector3.zero;
     
             if (directions.HasFlag(MovementDirection.Up))
             {
-                pos += Vector3.up * step;
+                direction = Vector3.up;
             }
             if (directions.HasFlag(MovementDirection.Down))
             {
-                pos += Vector3.down * step;
+                direction = Vector3.down;
             }
             if (directions.HasFlag(MovementDirection.Left))
             {
-                pos += Vector3.left * step;
+                direction = Vector3.left;
             }
             if (directions.HasFlag(MovementDirection.Right))
             {
-                pos += Vector3.right * step;
+                direction = Vector3.right;
+            }
+            
+            pos += Time.deltaTime * _pmContext.MovementSpeed * direction;
+            
+            if (direction != Vector3.zero)
+            {
+                var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                _context.UnitT.rotation = Quaternion.Euler(0, 0, angle);
             }
     
             return MonoContext.Instance.Field.ClampedMoveInFieldZone(pos, _context.UnitT.localScale);
