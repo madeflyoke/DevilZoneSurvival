@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using GameFlow.StateMachine.Interfaces;
+using Core.Scripts.GameFlow.StateMachine.Interfaces;
 using UnityEngine;
 
-namespace GameFlow.StateMachine
+namespace Core.Scripts.GameFlow.StateMachine
 {
     public class GameFlowStateMachine : MonoBehaviour, IStateMachine
     {

@@ -1,8 +1,6 @@
-using System;
-using GameFlow.StateMachine;
 using UnityEngine;
 
-namespace GameFlow
+namespace Core.Scripts.GameFlow
 {
     public class Bootstrapper : MonoBehaviour
     {

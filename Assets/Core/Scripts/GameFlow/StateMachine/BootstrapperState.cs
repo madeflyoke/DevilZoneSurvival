@@ -1,7 +1,7 @@
-using GameFlow.StateMachine.Interfaces;
+using Core.Scripts.GameFlow.StateMachine.Interfaces;
 using UnityEngine.Device;
 
-namespace GameFlow.StateMachine
+namespace Core.Scripts.GameFlow.StateMachine
 {
     public class BootstrapperState : IState
     {

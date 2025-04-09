@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace Utils
+namespace Core.Scripts.Utils
 {
     public static class Constants
     {

@@ -1,8 +1,8 @@
-using GameFlow.StateMachine.Interfaces;
+using Core.Scripts.GameFlow.StateMachine.Interfaces;
+using Core.Scripts.Utils;
 using UnityEngine.SceneManagement;
-using Utils;
 
-namespace GameFlow.StateMachine
+namespace Core.Scripts.GameFlow.StateMachine
 {
     public class GameplayState : IState
     {
