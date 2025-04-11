@@ -1,28 +1,38 @@
-using Core.Scripts.GameFlow.StateMachine.Interfaces;
+using System;
+using System.Threading;
+using Core.GameFlow.StateMachine.Interfaces;
+using Core.Services;
+using Cysharp.Threading.Tasks;
 using UnityEngine.Device;
 
-namespace Core.Scripts.GameFlow.StateMachine
+namespace Core.GameFlow.StateMachine
 {
-    public class BootstrapperState : IState
+    public class BootstrapperState : IState, IDisposable
     {
         private readonly IStateMachine _stateMachine;
+        private CancellationTokenSource _cts;
         
         public BootstrapperState(IStateMachine stateMachine)
         {
             _stateMachine = stateMachine;
         }
         
-        public void Enter()
+        public async void Enter()
         {
-            //services init (audio pools preparation etc.)
             Application.targetFrameRate = 60;
-            
+            _cts = new CancellationTokenSource();
+            await UniTask.WaitUntil(() => ServiceLocator.Instance != null, cancellationToken:_cts.Token);
             _stateMachine.EnterState<MainMenuState>();
         }
 
         public void Exit()
         {
-      
+            
+        }
+
+        public void Dispose()
+        {
+            _cts?.Dispose();
         }
     }
 }

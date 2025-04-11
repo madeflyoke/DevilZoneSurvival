@@ -8,5 +8,15 @@ namespace Core.Scripts.Utils
             public const string Gameplay = "GameplayScene";
             public const string Bootstrapper = "BootstrapperScene";
         }
+
+        public static class Layers
+        {
+            public const int Loot = 9;
+        }
+
+        public static class ResourcesPaths
+        {
+            public const string ItemsViewConfig = "ItemsViewConfig";
+        }
     }
 }

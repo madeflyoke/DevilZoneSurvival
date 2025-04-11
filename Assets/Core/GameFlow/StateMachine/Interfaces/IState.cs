@@ -1,4 +1,4 @@
-namespace Core.Scripts.GameFlow.StateMachine.Interfaces
+namespace Core.GameFlow.StateMachine.Interfaces
 {
     public interface IState
     {

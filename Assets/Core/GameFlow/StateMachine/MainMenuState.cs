@@ -1,8 +1,8 @@
-using Core.Scripts.GameFlow.StateMachine.Interfaces;
+using Core.GameFlow.StateMachine.Interfaces;
 using Core.Scripts.Utils;
 using UnityEngine.SceneManagement;
 
-namespace Core.Scripts.GameFlow.StateMachine
+namespace Core.GameFlow.StateMachine
 {
     public class MainMenuState : IState
     {

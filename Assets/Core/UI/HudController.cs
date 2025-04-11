@@ -1,22 +1,21 @@
-using System;
-using Core.Currency;
+using Core.Items.ViewModel;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.UI
 {
     public class HudController : MonoBehaviour
     {
-        [SerializeField] private CurrencyViewModelBinder _currencyViewModelBinder;
-        [SerializeField] private CurrencyView _soulsCurrencyView;
+        //[SerializeField] private ItemView _soulsItemView;
 
         private void Start()
         {
-            _currencyViewModelBinder.Bind(_soulsCurrencyView);
+        //    _soulsItemView.Bind(ServiceLocator.Instance.CurrencyService.ItemsViewModelMediator.ItemAmountBinder);
         }
 
         private void OnDisable()
         {
-            _currencyViewModelBinder.Unbind(_soulsCurrencyView);
+          //  _soulsItemView.Unbind();
         }
     }
 }

@@ -1,8 +1,8 @@
-using Core.Scripts.GameFlow.StateMachine.Interfaces;
+using Core.GameFlow.StateMachine.Interfaces;
 using Core.Scripts.Utils;
 using UnityEngine.SceneManagement;
 
-namespace Core.Scripts.GameFlow.StateMachine
+namespace Core.GameFlow.StateMachine
 {
     public class GameplayState : IState
     {
@@ -17,7 +17,7 @@ namespace Core.Scripts.GameFlow.StateMachine
         {
             SceneManager.LoadSceneAsync(Constants.ScenesNames.Gameplay);
             //wait for death (or popup with You die title)
-            _stateMachine.EnterState<GameplayState>();
+           // _stateMachine.EnterState<GameplayState>();
         }
 
         public void Exit()

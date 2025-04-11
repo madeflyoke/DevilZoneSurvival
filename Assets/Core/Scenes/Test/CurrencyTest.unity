@@ -562,7 +562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f021fa41f2002dd4b82deb5baa752afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currencyViewModelBinder: {fileID: 1469649614}
   _debugCurrencyView: {fileID: 902390314}
 --- !u!1 &963181383
 GameObject:
@@ -750,7 +749,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f1bd32528555a48a090c9418fce6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currencyViewModelBinder: {fileID: 1469649614}
   _soulsCurrencyView: {fileID: 1458441414}
 --- !u!1 &1089710599
 GameObject:
@@ -1030,50 +1028,6 @@ MonoBehaviour:
   _currencyType: 1
   _currencyText: {fileID: 2033991448}
   _icon: {fileID: 641012791}
---- !u!1 &1469649612
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1469649613}
-  - component: {fileID: 1469649614}
-  m_Layer: 0
-  m_Name: Binder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1469649613
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1469649612}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 161.75, y: 91, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1469649614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1469649612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6608e0c6f5b454fadf24ecb5bcf046, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1789642372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,6 +1299,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1458441413}
     m_Modifications:
+    - target: {fileID: 2364934671815641981, guid: 65073e60d4a0161439e9128e425c1ca9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.43200684
+      objectReference: {fileID: 0}
     - target: {fileID: 3816523084094289984, guid: 65073e60d4a0161439e9128e425c1ca9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1425,6 +1383,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5034431391502045934, guid: 65073e60d4a0161439e9128e425c1ca9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.42004395
+      objectReference: {fileID: 0}
     - target: {fileID: 6161995814867490240, guid: 65073e60d4a0161439e9128e425c1ca9, type: 3}
       propertyPath: m_Name
       value: CurrencyPair
@@ -1441,5 +1403,4 @@ SceneRoots:
   - {fileID: 963181386}
   - {fileID: 1789642374}
   - {fileID: 1089710602}
-  - {fileID: 1469649613}
   - {fileID: 116011320}
