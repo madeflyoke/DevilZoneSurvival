@@ -8,6 +8,7 @@ namespace Core.Services
         public static ServiceLocator Instance { get; private set; }
         
         public ItemsService ItemsService { get; private set; }
+        public ProgressService ProgressService { get; private set; }
         
         public void Awake()
         {
@@ -18,6 +19,7 @@ namespace Core.Services
             }
             
             ItemsService = new ItemsService();
+            ProgressService = new ProgressService();
             Instance = this;
         }
     }

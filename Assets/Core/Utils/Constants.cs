@@ -17,6 +17,7 @@ namespace Core.Scripts.Utils
         public static class ResourcesPaths
         {
             public const string ItemsViewConfig = "ItemsViewConfig";
+            public const string PlayerProgressConfig = "PlayerProgressConfig";
         }
     }
 }

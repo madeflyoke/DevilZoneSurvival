@@ -49,6 +49,8 @@ namespace Core.Items.ViewModel
         {
             amount = Mathf.Clamp(amount, 0, int.MaxValue);
             _items[itemType].Value = amount;
+            
+            Debug.Log($"Item {itemType} has been added, count: {_items[itemType].Value}");
         }
     }
 }

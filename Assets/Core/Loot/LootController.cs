@@ -50,6 +50,22 @@ namespace Core.Loot
                 });
             }
         }
+        
+        [Button]
+        public void SpawnExp()
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                SpawnLoot(Random.insideUnitCircle*10f, new ItemLootData()
+                {
+                    ItemLootType = ItemType.EXP_LOOT,
+                    LootActions = new List<IAction>()
+                    {
+                        new ExpCountAppendAction(Random.Range(50,100))
+                    } 
+                });
+            }
+        }
 
         [Button]
         public void SpawnMagnet()

@@ -1,5 +1,4 @@
 using Core.Items.Enum;
-using Core.Items.ViewModel.Interfaces;
 using R3;
 using TMPro;
 using UnityEngine;
@@ -13,12 +12,12 @@ namespace Core.Items.ViewModel
         [SerializeField] private TMP_Text _itemCountText;
         [SerializeField] private Image _icon; //from config?
         
-        private CompositeDisposable _disposable = new CompositeDisposable();
+        private CompositeDisposable _disposable;
         
-        public void Bind(IItemsAmountBinder binder)
+        public void Bind(ItemsViewModel itemViewModel)
         {
             _disposable ??= new CompositeDisposable();
-            binder.GetRelatedBind(_itemType).Subscribe(RefreshText).AddTo(_disposable);
+            itemViewModel.GetRelatedBind(_itemType).Subscribe(RefreshText).AddTo(_disposable);
         }
 
         public void Unbind()

@@ -1,10 +1,10 @@
+using Core.Actions.Interfaces;
 using Core.Items.Enum;
-using Core.Items.ViewModel.Interfaces;
 using R3;
 
 namespace Core.Items.ViewModel
 {
-    public class ItemsViewModel : IItemsAmountBinder, IItemsAmountChanger
+    public class ItemsViewModel : IActionReceiver
     {
         private readonly ItemsModel _itemsModel;
 

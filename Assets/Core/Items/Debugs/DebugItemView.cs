@@ -1,5 +1,6 @@
 using Core.Items.Enum;
-using Core.Items.ViewModel.Interfaces;
+using Core.Items.ViewModel;
+using Core.Services;
 using R3;
 using TMPro;
 using UnityEngine;
@@ -9,8 +10,6 @@ namespace Core.Items.Debugs
 {
     public class DebugItemView : MonoBehaviour
     {
-        public ItemType ItemType => _itemType;
-        
         [SerializeField] private int _changedValue;
         [SerializeField] private ItemType _itemType;
         [SerializeField] private Button _addButton;
@@ -18,23 +17,24 @@ namespace Core.Items.Debugs
         [SerializeField] private TMP_Text _itemCountText;
         [SerializeField] private Image _icon;
         
-        private IItemsAmountChanger _itemsViewModel;
-        private CompositeDisposable _disposable = new CompositeDisposable();
+        private ItemsViewModel _itemsViewModel;
+        private CompositeDisposable _disposable;
 
-        public void Initialize(Sprite sprite)
+        public void Start()
         {
-            _icon.sprite = sprite;
+            _icon.sprite = ServiceLocator.Instance.ItemsService.ViewConfig.GetItemConfigData(_itemType).Icon;
+            Bind(ServiceLocator.Instance.ItemsService.ItemsViewModelMediator.ItemsViewModel);
         }
         
-        public void Bind(IItemsAmountChanger amountChanger, IItemsAmountBinder binder)
+        public void Bind(ItemsViewModel itemsViewModel)
         {
-            _itemsViewModel = amountChanger;
+            _itemsViewModel = itemsViewModel;
             
             _addButton.onClick.AddListener(Add);
             _removeButton.onClick.AddListener(Remove);
             
             _disposable ??= new CompositeDisposable();
-            binder.GetRelatedBind(_itemType).Subscribe(RefreshText).AddTo(_disposable);
+            itemsViewModel.GetRelatedBind(_itemType).Subscribe(RefreshText).AddTo(_disposable);
         }
         
         public void Unbind()

@@ -1,17 +1,14 @@
 using System.Collections.Generic;
 using Core.Items.Enum;
-using Core.Items.ViewModel.Interfaces;
 
 namespace Core.Items.ViewModel
 {
     public class ItemsViewModelMediator
     {
-        public IItemsAmountChanger ItemsAmountChanger => _viewModel;
-        public IItemsAmountBinder ItemsAmountBinder => _viewModel;
-        
+        public ItemsViewModel ItemsViewModel { get; }
+
         private readonly ItemsModel _model;
-        private readonly ItemsViewModel _viewModel;
-        
+
         public ItemsViewModelMediator()
         {
             var itemsDictionary = new Dictionary<ItemType, int>();
@@ -21,7 +18,7 @@ namespace Core.Items.ViewModel
             }
             
             _model = new ItemsModel(itemsDictionary);
-            _viewModel = new ItemsViewModel(_model);
+            ItemsViewModel = new ItemsViewModel(_model);
         }
     }
 }
