@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Actions;
+using Core.Actions.Interfaces;
 using Core.Items.Enum;
 using Core.Loot.Data;
 using EasyButtons;
@@ -16,7 +18,7 @@ namespace Core.Loot
         
         public void SpawnLoot(Vector3 pos, ItemLootData lootData)
         {
-            var prefab = _lootPrefabVariants.FirstOrDefault(x => x.ItemType == lootData.ItemType);
+            var prefab = _lootPrefabVariants.FirstOrDefault(x => x.ItemType == lootData.ItemLootType);
             var instance = Instantiate(prefab, pos, Quaternion.identity);
             instance.Initialize(lootData);
             
@@ -38,8 +40,28 @@ namespace Core.Loot
         {
             for (int i = 0; i < 100; i++)
             {
-                SpawnLoot(Random.insideUnitCircle*5f, new ItemLootData(){ItemType = ItemType.CURRENCY_SOUL, Count = 99});
+                SpawnLoot(Random.insideUnitCircle*5f, new ItemLootData()
+                {
+                    ItemLootType = ItemType.CURRENCY_SOUL,
+                    LootActions = new List<IAction>()
+                    {
+                        new ItemsCountAppendAction(ItemType.CURRENCY_SOUL, 99)
+                    } 
+                });
             }
+        }
+
+        [Button]
+        public void SpawnMagnet()
+        {
+            SpawnLoot(Camera.main.ViewportToWorldPoint(new Vector3(0,1,0)), new ItemLootData()
+                {
+                    ItemLootType = ItemType.ALL_MAGNET, 
+                    LootActions = new List<IAction>()
+                    {
+                        new MagnetRadiusChangeAction(11, 7)
+                    }
+                });
         }
     }
 }

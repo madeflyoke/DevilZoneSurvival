@@ -1,14 +1,12 @@
 using System;
-using Core.Items.Data;
 using Core.Items.Enum;
 using Core.Loot.Data;
 using Core.Loot.Interfaces;
-using Core.Loot.Magnet;
 using UnityEngine;
 
 namespace Core.Loot
 {
-    public class ItemLoot : MonoBehaviour, IMagnetableLoot
+    public class ItemLoot : MonoBehaviour, ICollectableLoot
     {
         public event Action Looted;
         public Transform SelfTransform => transform;
@@ -23,14 +21,18 @@ namespace Core.Loot
             _relatedLootData = lootData;
         }
         
-        public void CallOnMagneted(IItemsLootOwner owner)
+        public void CallOnCollected(IActionReceiversOwner actionReceiversOwner)
         {
             Looted?.Invoke();
-            owner.ApplyLoot(_relatedLootData);
+
+            foreach (var action in _relatedLootData.LootActions)
+            {
+                action.TryExecute(actionReceiversOwner);
+            }
             Destroy(gameObject);
         }
 
-        public void CallOnStartMagneting()
+        public void CallOnStartCollecting()
         {
             _collider.enabled = false;
         }

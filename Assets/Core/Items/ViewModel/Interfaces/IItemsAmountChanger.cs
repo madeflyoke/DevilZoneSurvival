@@ -1,8 +1,9 @@
+using Core.Actions.Interfaces;
 using Core.Items.Enum;
 
 namespace Core.Items.ViewModel.Interfaces
 {
-    public interface IItemsAmountChanger
+    public interface IItemsAmountChanger : IActionReceiver
     {
         public void OnIncreaseAmount(ItemType itemType, int amount);
 

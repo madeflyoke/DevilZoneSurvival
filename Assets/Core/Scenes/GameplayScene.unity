@@ -255,7 +255,6 @@ GameObject:
   - component: {fileID: 324301014}
   - component: {fileID: 324301013}
   - component: {fileID: 324301012}
-  - component: {fileID: 324301015}
   m_Layer: 10
   m_Name: Looter
   m_TagString: Untagged
@@ -272,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 324301010}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.32, y: -1.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -290,9 +289,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d378b81bd04b041abfec229a853ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lootOwner: {fileID: 324301015}
-  _radius: 1.29
+  _radius: 2.45
+  _collider: {fileID: 324301013}
   _magnetSpeed: 2
+  _magnetAccelerationSpeed: 0.01
 --- !u!58 &324301013
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.29
+  m_Radius: 2.45
 --- !u!50 &324301014
 Rigidbody2D:
   serializedVersion: 4
@@ -355,18 +355,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &324301015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324301010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b30e82b3c41f5054ca52931052ed3491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &335941741
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,6 +2143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2106060045}
+  - component: {fileID: 2106060046}
   m_Layer: 0
   m_Name: PlayerDummy
   m_TagString: Untagged
@@ -2178,6 +2167,19 @@ Transform:
   - {fileID: 324301011}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2106060046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106060044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0402ee9a677572441957f0c3a5bee49b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lootCollector: {fileID: 324301012}
 --- !u!1 &2116499674
 GameObject:
   m_ObjectHideFlags: 0
@@ -2225,6 +2227,7 @@ MonoBehaviour:
   _lootPrefabVariants:
   - {fileID: 2435456468182720157, guid: e5c660a4c31d15342bd4a6a59237ad37, type: 3}
   - {fileID: 2435456468182720157, guid: a33dfb72024068343b76eeaa86f0c6f6, type: 3}
+  - {fileID: 2435456468182720157, guid: 1247fbd8ef1f4a4409055343888461aa, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
