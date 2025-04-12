@@ -1,22 +1,22 @@
 using System;
-using Core.Items.Enum;
 using Core.Loot.Data;
+using Core.Loot.Enums;
 using Core.Loot.Interfaces;
 using UnityEngine;
 
 namespace Core.Loot
 {
-    public class ItemLoot : MonoBehaviour, ICollectableLoot
+    public class Loot : MonoBehaviour, ICollectableLoot
     {
         public event Action Looted;
         public Transform SelfTransform => transform;
 
-        [field: SerializeField] public ItemType ItemType { get; private set; }
-        [SerializeField] private ItemLootView _lootView;
+        [field: SerializeField] public LootType ViewType { get; private set; }
+        [SerializeField] private LootView _lootView;
         [SerializeField] private BoxCollider2D _collider;
-        private ItemLootData _relatedLootData;
+        private LootData _relatedLootData;
 
-        public void Initialize(ItemLootData lootData)
+        public void Initialize(LootData lootData)
         {
             _relatedLootData = lootData;
         }

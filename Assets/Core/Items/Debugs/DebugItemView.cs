@@ -22,7 +22,7 @@ namespace Core.Items.Debugs
 
         public void Start()
         {
-            _icon.sprite = ServiceLocator.Instance.ItemsService.ViewConfig.GetItemConfigData(_itemType).Icon;
+           _icon.sprite = ServiceLocator.Instance.ItemsService.ItemsViewConfig.GetItemConfigData(_itemType).Icon;
             Bind(ServiceLocator.Instance.ItemsService.ItemsViewModelMediator.ItemsViewModel);
         }
         

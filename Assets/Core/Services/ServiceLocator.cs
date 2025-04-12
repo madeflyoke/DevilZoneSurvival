@@ -11,6 +11,7 @@ namespace Core.Services
         
         public ItemsService ItemsService { get; private set; }
         public ProgressService ProgressService { get; private set; }
+        public PlayerStatsService PlayerStatsService { get; private set; }
         public PauseService PauseService { get; private set; }
         
         public void Awake()
@@ -24,6 +25,7 @@ namespace Core.Services
             PauseService = new PauseService();
             ItemsService = new ItemsService();
             ProgressService = new ProgressService();
+            PlayerStatsService = new PlayerStatsService();
             Instance = this;
         }
 

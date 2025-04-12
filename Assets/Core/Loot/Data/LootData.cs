@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using Core.Actions.Interfaces;
-using Core.Items.Enum;
+using Core.Loot.Enums;
 
 namespace Core.Loot.Data
 {
-    public class ItemLootData
+    public class LootData
     {
-        public ItemType ItemLootType;
+        public LootType ViewType;
         public List<IAction> LootActions;
     }
 }

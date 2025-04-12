@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 namespace Core.UI
 {
-    public class BuffView : MonoBehaviour
+    public class RewardElementView : MonoBehaviour
     {
-        public event Action<BuffView, IAction> Selected;
+        public event Action<RewardElementView, IAction> Selected;
         
         [SerializeField] private Button _selectButton;
         [SerializeField] private Image _icon;

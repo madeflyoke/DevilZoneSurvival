@@ -1,10 +1,9 @@
 namespace Core.Actions.Enum
 {
-    public enum ActionType
+    public enum RewardType
     {
         NONE = 0,
-        HEAL = 1,
+        STAT_CHANGED = 1,
         ITEM_APPEND = 2,
-        STAT_CHANGED = 3,
     }
 }

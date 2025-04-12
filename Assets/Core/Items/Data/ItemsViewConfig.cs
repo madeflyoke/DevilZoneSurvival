@@ -6,18 +6,17 @@ using UnityEngine;
 
 namespace Core.Items.Data
 {
-    [CreateAssetMenu(menuName = "Game/ItemsConfig", fileName = "ItemsConfig")]
+    [CreateAssetMenu(menuName = "Game/ItemsConfig", fileName = "ItemsViewConfig")]
     public class ItemsViewConfig : ScriptableObject
     {
-        [SerializeField] private List<ItemViewConfigData> _itemTypes;
-
-        public ItemViewConfigData GetItemConfigData(ItemType itemType)
+        [SerializeField] private List<ItemsViewConfigData> _itemTypes;
+        public ItemsViewConfigData GetItemConfigData(ItemType itemType)
         {
             return _itemTypes.FirstOrDefault(x => x.Type == itemType);
         }
         
         [Serializable]
-        public class ItemViewConfigData
+        public class ItemsViewConfigData
         {
             public ItemType Type;
             public Sprite Icon;

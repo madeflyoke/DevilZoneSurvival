@@ -1,9 +1,6 @@
-using System;
 using Core.Items.Data;
 using Core.Items.Enum;
-using Core.Loot;
 using Core.Scripts.Utils;
-using EasyButtons;
 using R3;
 using TMPro;
 using UnityEngine;
@@ -18,7 +15,6 @@ namespace Core.Items.ViewModel
         [SerializeField] private Image _icon;
         
         private CompositeDisposable _disposable;
-        
         
         public void Bind(ItemsViewModel itemViewModel)
         {
@@ -46,7 +42,7 @@ namespace Core.Items.ViewModel
                 Debug.LogError($"ItemType {_itemType} not found in config");
                 return;
             }
-
+            
             if (_icon.sprite!=data.Icon)
             {
                 _icon.sprite = data.Icon;

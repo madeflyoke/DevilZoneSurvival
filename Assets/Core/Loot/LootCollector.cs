@@ -4,16 +4,18 @@ using Core.Loot.Interfaces;
 using Core.Scripts.Utils;
 using Core.Services;
 using Core.Services.Pause.Interfaces;
+using Core.Stats.Enum;
+using Core.Stats.ViewModel;
+using R3;
 using UnityEditor;
 using UnityEngine;
 
 namespace Core.Loot
 {
-    public class LootCollector : MonoBehaviour, IActionReceiver, IPausable
+    public class LootCollector : MonoBehaviour, IPausable
     {
         public bool IsPaused { get; private set; }
         
-        [SerializeField] private float _radius;
         [SerializeField] private CircleCollider2D _collider;
         [SerializeField] private float _magnetSpeed;
         [SerializeField] private float _magnetAccelerationSpeed;
@@ -24,11 +26,26 @@ namespace Core.Loot
         private readonly Dictionary<ICollectableLoot, float> _currentCollectablesAccelerators = new Dictionary<ICollectableLoot, float>();
         private float _currentRadius;
 
-        public void Initialize(IActionReceiversOwner actionReceiversOwner)
+        private StatsViewModel _statsViewModel;
+        private CompositeDisposable _disposable = new CompositeDisposable();
+
+        public void Initialize(IActionReceiversOwner actionReceiversOwner, StatsViewModel statsViewModel) //maybe take from service by own
         {
+            _statsViewModel = statsViewModel;
             ServiceLocator.Instance.PauseService.Register(this);
             _actionReceiversOwner = actionReceiversOwner;
-            SetDefaultRadius();
+            BindStat();
+        }
+
+        private void BindStat()
+        {
+            _statsViewModel.GetRelatedBind(StatType.CURRENT_MAGNET)
+                .Subscribe(x=>SetCurrentRadius(x)).AddTo(_disposable);
+        }
+
+        private void UnbindStat()
+        {
+            _disposable?.Dispose();
         }
 
         public void IncreaseCurrentRadius(float appendRadius)
@@ -40,11 +57,6 @@ namespace Core.Loot
         {
             _currentRadius = value;
             _collider.radius = _currentRadius;
-        }
-
-        public void SetDefaultRadius()
-        {
-            SetCurrentRadius(_radius);
         }
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -91,21 +103,6 @@ namespace Core.Loot
                 collectable.SelfTransform.position += dir.normalized * (finalSpeed * Time.deltaTime);
             }
         }
-
-#if UNITY_EDITOR
-
-        private void OnValidate()
-        {
-            GetComponent<CircleCollider2D>().radius = _radius;
-        }
-
-        private void OnDrawGizmos()
-        {
-            Handles.color = Color.yellow;
-            Handles.DrawWireDisc(transform.position, Vector3.back,  _radius);
-        }
-
-#endif
         
         public void SetPause(bool value)
         {

@@ -53,11 +53,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5610260219079610073, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}
+      propertyPath: _relatedLoot
+      value: 
+      objectReference: {fileID: 2435456468182720157}
+    - target: {fileID: 5610260219079610073, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}
       propertyPath: _relatedItemLoot
       value: 
       objectReference: {fileID: 2435456468182720157}
     - target: {fileID: 7130905765108334219, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}
       propertyPath: <ItemType>k__BackingField
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130905765108334219, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}
+      propertyPath: <ViewType>k__BackingField
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7876847314446616782, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}

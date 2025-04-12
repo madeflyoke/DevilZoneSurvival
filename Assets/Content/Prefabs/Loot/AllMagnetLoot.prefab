@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1396326272958406493, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3555f812ccc6ecf4d91f7279c5665044, type: 3}
+      objectReference: {fileID: 21300000, guid: 5341e09ac3a39b043912d1616cf1043c, type: 3}
     - target: {fileID: 4015265432022222416, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -53,11 +53,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5610260219079610073, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}
+      propertyPath: _relatedLoot
+      value: 
+      objectReference: {fileID: 2435456468182720157}
+    - target: {fileID: 5610260219079610073, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}
       propertyPath: _relatedItemLoot
       value: 
       objectReference: {fileID: 2435456468182720157}
     - target: {fileID: 7130905765108334219, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}
       propertyPath: <ItemType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130905765108334219, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}
+      propertyPath: <ViewType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7876847314446616782, guid: 04fcd53677767744cb6194151ccb9aa9, type: 3}

@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Actions;
 using Core.Actions.Interfaces;
-using Core.Items.Enum;
 using Core.Loot.Data;
+using Core.Loot.Enums;
 using EasyButtons;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,12 +12,12 @@ namespace Core.Loot
 {
     public class LootController : MonoBehaviour
     {
-        [SerializeField] private List<ItemLoot> _lootPrefabVariants;
-        private List<ItemLoot> _currentFieldLoots = new List<ItemLoot>();
+        [SerializeField] private List<Loot> _lootPrefabVariants;
+        private List<Loot> _currentFieldLoots = new List<Loot>();
         
-        public void SpawnLoot(Vector3 pos, ItemLootData lootData)
+        public void SpawnLoot(Vector3 pos, LootData lootData)
         {
-            var prefab = _lootPrefabVariants.FirstOrDefault(x => x.ItemType == lootData.ItemLootType);
+            var prefab = _lootPrefabVariants.FirstOrDefault(x => x.ViewType == lootData.ViewType);
             var instance = Instantiate(prefab, pos, Quaternion.identity);
             instance.Initialize(lootData);
             
@@ -40,12 +39,12 @@ namespace Core.Loot
         {
             for (int i = 0; i < 100; i++)
             {
-                SpawnLoot(Random.insideUnitCircle*5f, new ItemLootData()
+                SpawnLoot(Random.insideUnitCircle*5f, new LootData()
                 {
-                    ItemLootType = ItemType.CURRENCY_SKULL,
+                    ViewType = LootType.CURRENCY_SKULL,
                     LootActions = new List<IAction>()
                     {
-                        new ItemsCountAppendAction(ItemType.CURRENCY_SKULL, 99)
+                        new ItemsCountAppendAction(Items.Enum.ItemType.CURRENCY_SKULL, 99)
                     } 
                 });
             }
@@ -56,9 +55,9 @@ namespace Core.Loot
         {
             for (int i = 0; i < 30; i++)
             {
-                SpawnLoot(Random.insideUnitCircle*10f, new ItemLootData()
+                SpawnLoot(Random.insideUnitCircle*10f, new LootData()
                 {
-                    ItemLootType = ItemType.EXP_LOOT,
+                    ViewType = LootType.EXP_LOOT,
                     LootActions = new List<IAction>()
                     {
                         new ExpCountAppendAction(Random.Range(50,100))
@@ -70,12 +69,12 @@ namespace Core.Loot
         [Button]
         public void SpawnMagnet()
         {
-            SpawnLoot(Camera.main.ViewportToWorldPoint(new Vector3(0,1,0)), new ItemLootData()
+            SpawnLoot(Camera.main.ViewportToWorldPoint(new Vector3(0,1,0)), new LootData()
                 {
-                    ItemLootType = ItemType.ALL_MAGNET, 
+                    ViewType = LootType.ALL_MAGNET, 
                     LootActions = new List<IAction>()
                     {
-                        new MagnetRadiusChangeAction(11, 7)
+                        new TemporaryMagnetRadiusChangeAction(11, 7)
                     }
                 });
         }

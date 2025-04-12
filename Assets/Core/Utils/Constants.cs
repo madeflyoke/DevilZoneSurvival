@@ -1,5 +1,3 @@
-using Core.Buffs.Data;
-
 namespace Core.Scripts.Utils
 {
     public static class Constants
@@ -19,6 +17,7 @@ namespace Core.Scripts.Utils
         public static class ResourcesPaths
         {
             public const string ItemsViewConfig = "ItemsViewConfig";
+            public const string LootViewConfig = "LootViewConfig";
             public const string PlayerProgressConfig = "PlayerProgressConfig";
         }
     }

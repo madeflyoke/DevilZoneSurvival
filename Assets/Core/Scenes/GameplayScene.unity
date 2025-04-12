@@ -306,6 +306,17 @@ MonoBehaviour:
   _expText: {fileID: 1168351341}
   _progressBar: {fileID: 1298455808}
   _levelText: {fileID: 1674272746}
+--- !u!114 &240310282 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1505456645821226633, guid: 8a6f2d5086ce19f4f823ea30a7ccee64, type: 3}
+  m_PrefabInstance: {fileID: 614246395}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456531421bbbbf6418c9a8cdd0dd978d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &324301010
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,9 +363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d378b81bd04b041abfec229a853ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 2.45
   _collider: {fileID: 324301013}
-  _magnetSpeed: 1
+  _magnetSpeed: 2
   _magnetAccelerationSpeed: 0.01
 --- !u!58 &324301013
 CircleCollider2D:
@@ -2214,8 +2224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112cc7d27f26e824091aaf70a79aa94f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buffsConfig: {fileID: 11400000, guid: 4c283aed8f62db84b97ec042ac1f8926, type: 2}
-  _buffViewPrefab: {fileID: 6192102650357345342, guid: 2862ddaf03560654d97e87294d0051c8, type: 3}
+  _rewardsSelector: {fileID: 240310282}
+  _capacity: 4
+  _rewardsConfig: {fileID: 11400000, guid: 4c283aed8f62db84b97ec042ac1f8926, type: 2}
+  _rewardElementViewPrefab: {fileID: 6192102650357345342, guid: 2862ddaf03560654d97e87294d0051c8, type: 3}
   _buffsViewsParent: {fileID: 1831612264}
 --- !u!1 &1769098946
 GameObject:
@@ -2642,7 +2654,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -462288745
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1907633561
