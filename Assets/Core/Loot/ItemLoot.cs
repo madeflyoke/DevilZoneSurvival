@@ -13,7 +13,7 @@ namespace Core.Loot
 
         [field: SerializeField] public ItemType ItemType { get; private set; }
         [SerializeField] private ItemLootView _lootView;
-        [SerializeField] private Collider2D _collider;
+        [SerializeField] private BoxCollider2D _collider;
         private ItemLootData _relatedLootData;
 
         public void Initialize(ItemLootData lootData)

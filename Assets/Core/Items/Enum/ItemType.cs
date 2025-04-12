@@ -6,6 +6,6 @@ namespace Core.Items.Enum
         HEALTH_LOOT = 1,
         ALL_MAGNET = 2,
         EXP_LOOT = 3,
-        CURRENCY_SOUL =4,
+        CURRENCY_SKULL =4,
     }
 }

@@ -1,3 +1,5 @@
+using Core.Buffs.Data;
+
 namespace Core.Scripts.Utils
 {
     public static class Constants

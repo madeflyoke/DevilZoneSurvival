@@ -2,13 +2,17 @@ using System.Collections.Generic;
 using Core.Actions.Interfaces;
 using Core.Loot.Interfaces;
 using Core.Scripts.Utils;
+using Core.Services;
+using Core.Services.Pause.Interfaces;
 using UnityEditor;
 using UnityEngine;
 
 namespace Core.Loot
 {
-    public class LootCollector : MonoBehaviour, IActionReceiver
+    public class LootCollector : MonoBehaviour, IActionReceiver, IPausable
     {
+        public bool IsPaused { get; private set; }
+        
         [SerializeField] private float _radius;
         [SerializeField] private CircleCollider2D _collider;
         [SerializeField] private float _magnetSpeed;
@@ -22,13 +26,19 @@ namespace Core.Loot
 
         public void Initialize(IActionReceiversOwner actionReceiversOwner)
         {
+            ServiceLocator.Instance.PauseService.Register(this);
             _actionReceiversOwner = actionReceiversOwner;
             SetDefaultRadius();
         }
 
-        public void SetCurrentRadius(float radius)
+        public void IncreaseCurrentRadius(float appendRadius)
         {
-            _currentRadius = radius;
+            SetCurrentRadius(_currentRadius+appendRadius);
+        }
+        
+        public void SetCurrentRadius(float value)
+        {
+            _currentRadius = value;
             _collider.radius = _currentRadius;
         }
 
@@ -53,6 +63,11 @@ namespace Core.Loot
 
         private void Update()
         {
+            if (IsPaused)
+            {
+                return;
+            }
+            
             for (int i = _currentCollectables.Count-1; i >= 0; i--)
             {
                 var collectable = _currentCollectables[i];
@@ -91,6 +106,10 @@ namespace Core.Loot
         }
 
 #endif
-       
+        
+        public void SetPause(bool value)
+        {
+            IsPaused = value;
+        }
     }
 }

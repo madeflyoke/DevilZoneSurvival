@@ -1,4 +1,6 @@
 using System;
+using Core.Services.Pause;
+using EasyButtons;
 using UnityEngine;
 
 namespace Core.Services
@@ -9,6 +11,7 @@ namespace Core.Services
         
         public ItemsService ItemsService { get; private set; }
         public ProgressService ProgressService { get; private set; }
+        public PauseService PauseService { get; private set; }
         
         public void Awake()
         {
@@ -18,9 +21,16 @@ namespace Core.Services
                 return;
             }
             
+            PauseService = new PauseService();
             ItemsService = new ItemsService();
             ProgressService = new ProgressService();
             Instance = this;
+        }
+
+        [Button]
+        public void SetPause(bool value)
+        {
+            PauseService.SetPause(value);
         }
     }
 }

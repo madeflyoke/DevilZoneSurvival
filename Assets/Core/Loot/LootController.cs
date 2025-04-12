@@ -42,10 +42,10 @@ namespace Core.Loot
             {
                 SpawnLoot(Random.insideUnitCircle*5f, new ItemLootData()
                 {
-                    ItemLootType = ItemType.CURRENCY_SOUL,
+                    ItemLootType = ItemType.CURRENCY_SKULL,
                     LootActions = new List<IAction>()
                     {
-                        new ItemsCountAppendAction(ItemType.CURRENCY_SOUL, 99)
+                        new ItemsCountAppendAction(ItemType.CURRENCY_SKULL, 99)
                     } 
                 });
             }
