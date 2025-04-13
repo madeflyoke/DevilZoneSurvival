@@ -15,25 +15,25 @@ MonoBehaviour:
   _statsRewards:
   - Icon: {fileID: 21300000, guid: de06dac3515f7114693b94ef2ec3a8f4, type: 3}
     Title: Maximum Health
-    Description: Increase {0} stat by {1} value
+    Description: Increase {0} stat by {1}% value
     StatType: 1
     MinValuePercent: 3
     MaxValuePercent: 6
-  - Icon: {fileID: 21300000, guid: a2033bc29529d4a40b1ae2cd09591092, type: 3}
+  - Icon: {fileID: 21300000, guid: 892707165000c984da04b3399cd5c4b5, type: 3}
     Title: Heal
-    Description: Increase {0} stat by {1} value
+    Description: Increase {0} by {1}% value
     StatType: 2
     MinValuePercent: 10
     MaxValuePercent: 20
-  - Icon: {fileID: 21300000, guid: fb3415f7d57ac7948a7250a5943cca2c, type: 3}
+  - Icon: {fileID: 21300000, guid: 4a02212cc12b65e44bf9fc300f7c2dc7, type: 3}
     Title: Movement Speed
-    Description: Increase {0} stat by {1} value
+    Description: Increase {0} stat by {1}% value
     StatType: 3
     MinValuePercent: 2
     MaxValuePercent: 5
-  - Icon: {fileID: 21300000, guid: 5341e09ac3a39b043912d1616cf1043c, type: 3}
+  - Icon: {fileID: 21300000, guid: 7e72ee6513a8d7845a843520487a4b12, type: 3}
     Title: Magnet
-    Description: Increase {0} stat by {1} value
+    Description: Increase {0} stat by {1}% value
     StatType: 4
     MinValuePercent: 10
     MaxValuePercent: 50

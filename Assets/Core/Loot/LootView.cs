@@ -17,8 +17,7 @@ namespace Core.Loot
         
 #if UNITY_EDITOR
 
-        [Button]
-        private void Setup()
+        private void OnValidate()
         {
             _relatedLoot ??= GetComponentInParent<Loot>();
             if (_relatedLoot==false || _mainIcon==null)

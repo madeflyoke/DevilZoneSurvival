@@ -26,12 +26,9 @@ namespace Core.Actions
             if (owner.TryGetActionReceiver<StatsViewModel>(out var result))
             {
                 result.OnIncreasePercent(StatType.CURRENT_MAGNET, _appendPercent);
-                if (_duration==1)
-                {
-                    return;
-                }
+                
                 _disposable = Observable.Timer(TimeSpan.FromSeconds(_duration))
-                    .Subscribe(_ => result.OnDecreasePercent(StatType.CURRENT_MAGNET,_appendPercent));
+                    .Subscribe(_ => result.OnRevertPercent(StatType.CURRENT_MAGNET,_appendPercent));
             }
         }
 

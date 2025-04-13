@@ -69,12 +69,14 @@ namespace Core.Loot
         [Button]
         public void SpawnMagnet()
         {
-            SpawnLoot(Camera.main.ViewportToWorldPoint(new Vector3(0,1,0)), new LootData()
+            var tmpPos = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0));
+            tmpPos.z = 0;
+            SpawnLoot(tmpPos, new LootData()
                 {
                     ViewType = LootType.ALL_MAGNET, 
                     LootActions = new List<IAction>()
                     {
-                        new TemporaryMagnetRadiusChangeAction(11, 7)
+                        new TemporaryMagnetRadiusChangeAction(250, 7)
                     }
                 });
         }

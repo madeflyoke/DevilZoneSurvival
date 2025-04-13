@@ -29,8 +29,18 @@ namespace Core.Stats.ViewModel
         public void OnDecreasePercent(StatType stat, int valuePercent)
         {
             var current = _statsModel.GetValue(stat);
-            var value = current * valuePercent / 100;
+            var value = current * 100 / valuePercent;
             _statsModel.RemoveValue(stat, value);
+        }
+
+        public void OnRevertPercent(StatType stat, int valuePercent)
+        {
+            var current = _statsModel.GetValue(stat);
+    
+            var originalValue = current / (1 + (valuePercent / 100f));
+    
+            var decreaseValue = current - originalValue;
+            _statsModel.RemoveValue(stat, decreaseValue);
         }
     }
 }
