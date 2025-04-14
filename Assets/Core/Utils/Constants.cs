@@ -19,6 +19,7 @@ namespace Core.Scripts.Utils
             public const string ItemsViewConfig = "ItemsViewConfig";
             public const string LootViewConfig = "LootViewConfig";
             public const string PlayerProgressConfig = "PlayerProgressConfig";
+            public const string RewardsConfig = "RewardsConfig";
         }
     }
 }

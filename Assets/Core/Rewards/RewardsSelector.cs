@@ -7,6 +7,7 @@ using Core.Actions.Enum;
 using Core.Actions.Interfaces;
 using Core.Rewards.Data;
 using Core.Rewards.Interfaces;
+using Core.Scripts.Utils;
 using Core.Stats.Enum;
 using Core.Utils;
 using UnityEngine;
@@ -14,13 +15,12 @@ using Random = UnityEngine.Random;
 
 namespace Core.Rewards
 {
-    public class RewardsSelector : MonoBehaviour
+    public class RewardsSelector
     {
-        [SerializeField] private RewardsConfig _rewardsConfig;
-        
+        private RewardsConfig _rewardsConfig;
         private List<Type> _registeredRewardActions = new List<Type>();
 
-        public void Start()
+        public RewardsSelector()
         {
             var allTypes = Assembly.GetExecutingAssembly().GetTypes();
 
@@ -31,6 +31,7 @@ namespace Core.Rewards
                     _registeredRewardActions.Add(type);
                 }
             }
+            _rewardsConfig = Resources.Load<RewardsConfig>(Constants.ResourcesPaths.RewardsConfig);
         }
 
         public List<IRewardedAction> GetRandomRewards(int min, int max)

@@ -8,7 +8,7 @@ namespace Core.UI
 {
     public class RewardElementView : MonoBehaviour
     {
-        public event Action<RewardElementView, IAction> Selected;
+        public event Action<IAction> Selected;
         
         [SerializeField] private Button _selectButton;
         [SerializeField] private Image _icon;
@@ -35,7 +35,7 @@ namespace Core.UI
         
         private void OnSelect()
         {
-            Selected?.Invoke(this, _buffAction);
+            Selected?.Invoke(_buffAction);
         }
     }
 }

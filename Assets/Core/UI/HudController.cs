@@ -16,16 +16,23 @@ namespace Core.UI
 
         private void Start()
         {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
             var levelViewModel = ServiceLocator.Instance.ProgressService.LevelViewModelMediator.LevelViewModel;
             _levelExpView.Bind(levelViewModel);
             _currencyView.Bind(ServiceLocator.Instance.ItemsService.ItemsViewModelMediator.ItemsViewModel);
+            _levelUpPopup.Initialize();
             _levelUpPopup.Bind(levelViewModel);
         }
-        
         
         private void OnDisable()
         {
            _levelExpView.Unbind();
+           _currencyView.Unbind();
+           _levelUpPopup.Unbind();
         }
     }
 }
