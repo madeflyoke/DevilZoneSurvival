@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Core.Scripts.Units.Components;
 using Core.Scripts.Utils;
 using Core.Units.UnitBrains;
@@ -16,20 +17,20 @@ public class UnitBrainEditor : Editor
         public string Name;
         public Type Type;
     }
-    
-    private List<TypeNamePair> availableComponentTypes;
-    private SerializedProperty _componentsProperty;
+
+    private List<TypeNamePair> _availableComponentTypes;
+    private UnitBrain _unitBrain;
 
     private void OnEnable()
     {
-        _componentsProperty = serializedObject.FindProperty("Components");
-        
+        _unitBrain = (UnitBrain)target;
+
         LoadAvailableComponentTypes();
     }
 
     private void LoadAvailableComponentTypes()
     {
-        availableComponentTypes = AppDomain.CurrentDomain.GetAssemblies()
+        _availableComponentTypes = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(assembly => assembly.GetTypes())
             .Where(type => typeof(UnitComponentBase).IsAssignableFrom(type) && !type.IsAbstract && !type.IsInterface)
             .Select(t =>
@@ -56,10 +57,11 @@ public class UnitBrainEditor : Editor
         if (GUILayout.Button("Add Component"))
         {
             var menu = new GenericMenu();
-            foreach (var type in availableComponentTypes)
+            foreach (var type in _availableComponentTypes.Where(t => _unitBrain.Components.All(c => c.GetType() != t.Type)))
             {
                 menu.AddItem(new GUIContent(type.Name), false, () => AddComponentOfType(type.Type));
             }
+
             menu.ShowAsContext();
         }
 
@@ -69,10 +71,17 @@ public class UnitBrainEditor : Editor
     private void AddComponentOfType(Type type)
     {
         var newComponent = (UnitComponentBase)Activator.CreateInstance(type);
+        newComponent.EditorName = FormatName(newComponent.GetType().Name);
 
         var playerBrain = (UnitBrain)target;
         playerBrain.Components.Add(newComponent);
 
         EditorUtility.SetDirty(target);
+    }
+
+    private string FormatName(string input)
+    {
+        input = Regex.Replace(input, "Component$", "");
+        return Regex.Replace(input, "([a-z])([A-Z])", "$1 $2").Trim();
     }
 }

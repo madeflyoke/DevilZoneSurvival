@@ -4,7 +4,7 @@ namespace Core.Units.UnitBrains
     {
         private void Start()
         {
-            MonoContext.Instance.CameraProvider.SetObjectToFollow(_unitContext.UnitT);
+            MonoContext.Instance.CameraProvider.SetObjectToFollow(UnitContext.UnitT);
         }
     }
 }

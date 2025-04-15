@@ -5,19 +5,42 @@ using UnityEngine;
 
 namespace Core.Scripts.Units.Components
 {
+    [Serializable]
+    public class PlayerMovementData : CData
+    {
+        public float Speed;
+    }
+    
     [ComponentName("Player Movement")]
     [Serializable]
-    public class PlayerMovementComponent : UnitComponentBase
+    public class PlayerMovementComponent : UnitAbstractComponent<PlayerMovementData>
     {
-        [Serializable]
-        public class Context
-        {
-            public float MovementSpeed;
-        }
-        
-        [SerializeField] private Context _pmContext;
-        
         public override void Execute()
+        {
+            var directions = GetDirection();
+            
+            var pos = _context.UnitT.position;
+    
+            if (directions == 0)
+            {
+                _context.UnitT.position = pos;
+
+                return;
+            }
+            
+            var direction = GetDirectionVec(directions);
+            pos += Time.deltaTime * Data.Speed * direction;
+            
+            if (direction != Vector3.zero)
+            {
+                var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                _context.UnitR.rotation = Quaternion.Euler(0f, 0f, angle);
+            }
+    
+            _context.UnitT.position = MonoContext.Instance.Field.ClampedMoveInFieldZone(pos, _context.UnitT.localScale);
+        }
+
+        private MovementDirection GetDirection()
         {
             var directions = MovementDirection.None;
             
@@ -37,47 +60,32 @@ namespace Core.Scripts.Units.Components
             {
                 directions |= MovementDirection.Right;
             }
-    
-            _context.UnitT.position = GetNewPosition(directions);
+
+            return directions;
         }
-    
-        public Vector3 GetNewPosition(MovementDirection directions)
+
+        private Vector3 GetDirectionVec(MovementDirection directions)
         {
-            var pos = _context.UnitT.position;
-    
-            if (directions == 0)
-            {
-                return pos;
-            }
-            
             var direction = Vector3.zero;
-    
+
             if (directions.HasFlag(MovementDirection.Up))
             {
-                direction = Vector3.up;
+                direction += Vector3.up;
             }
             if (directions.HasFlag(MovementDirection.Down))
             {
-                direction = Vector3.down;
+                direction += Vector3.down;
             }
             if (directions.HasFlag(MovementDirection.Left))
             {
-                direction = Vector3.left;
+                direction += Vector3.left;
             }
             if (directions.HasFlag(MovementDirection.Right))
             {
-                direction = Vector3.right;
+                direction += Vector3.right;
             }
             
-            pos += Time.deltaTime * _pmContext.MovementSpeed * direction;
-            
-            if (direction != Vector3.zero)
-            {
-                var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                _context.UnitT.rotation = Quaternion.Euler(0, 0, angle);
-            }
-    
-            return MonoContext.Instance.Field.ClampedMoveInFieldZone(pos, _context.UnitT.localScale);
+            return direction;
         }
     }
 }

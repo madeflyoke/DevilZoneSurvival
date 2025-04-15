@@ -7,7 +7,7 @@ namespace Core.Units.UnitBrains
 {
     public class UnitBrain : MonoBehaviour
     {
-        [SerializeField] protected UnitContext _unitContext;
+        public UnitContext UnitContext;
     
         [Space]
         [SerializeReference] public List<UnitComponentBase> Components = new();
@@ -16,13 +16,18 @@ namespace Core.Units.UnitBrains
         {
             foreach (var component in Components)
             {
-                component.Initialize(_unitContext);
+                component.Initialize(UnitContext);
             }
         }
         
         private void Update()
         {
             Components.ForEach(component => component.Execute());
+        }
+
+        public T GetUnitComponent<T>() where T : UnitComponentBase
+        {
+            return Components.Find(component => component.GetType() == typeof(T)) as T;
         }
     }
 }

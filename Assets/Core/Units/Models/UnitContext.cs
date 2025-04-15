@@ -7,5 +7,6 @@ namespace Core.Scripts.Units.Models
     public class UnitContext
     {
         public Transform UnitT;
+        public Transform UnitR;
     }
 }
