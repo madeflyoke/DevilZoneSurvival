@@ -14,27 +14,22 @@ namespace Core.GamePlay.Units.Components
       
       public float DistanceToDestination { get; private set; }
       
-      public void Stop() =>_isMoving = false;
+      public void Stop() => _isMoving = false;
 
       public void Continue() => _isMoving = true;
       
-      public void Setup(float speed)
-      {
-         _speed = speed;
-      }
+      public void Setup(float speed) => _speed = speed;
       
       public void SetDestination(Vector3 destination)
       {
          _movementType = MovementType.MOVE_TO_POINT;
          _destination = destination;
-         Move();
       }
       
       public void SetDestination(Transform target)
       {
          _movementType = MovementType.FOLLOW_TRANSFORM;
          _target = target;
-         Move();
       }
       
       protected override void Tick()
@@ -49,6 +44,9 @@ namespace Core.GamePlay.Units.Components
       private void Move()
       {
          if(DistanceToDestination <= MIN_DISTINATION_DISTANCE || _movementType== MovementType.NONE) return;
+         
+         var direction = (_target.position - transform.position).normalized;
+         transform.position += direction * _speed * Time.deltaTime;
       }
       
       private void CalculateDistanceToDestination()
