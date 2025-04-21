@@ -1,4 +1,9 @@
-using Core.Scripts.Units.Models;
+using Core.Units.Components;
+using Core.Units.Models;
+using Core.Units.UnitBrains;
+using Core.Utils;
+using Core.WeaponSystem.Data;
+using Core.WeaponSystem.Enums;
 using Core.WeaponSystem.Interfaces;
 using DG.Tweening;
 using UnityEngine;
@@ -7,25 +12,27 @@ namespace Core.WeaponSystem
 {
     public abstract class Weapon : MonoBehaviour, IWeapon
     {
-        [Header("References")]
-        [SerializeField] protected Transform _weaponT;
+        protected abstract WeaponData BaseWeaponData { get; }
         
-        [Header("Configuration")]
-        [SerializeField] protected float _attackSpeed;
-        [SerializeField] protected float _cooldown;
+        [field:SerializeField] public WeaponType WeaponType { get; private set; } 
+        
+        [SerializeField] protected Transform _weaponT;
         
         protected CooldownTimer _cooldownTimer;
         protected Sequence _attackSequence;
-        protected UnitContext _unitContext;
+        
+        protected UnitBrain _unitBrain;
+        protected Transform _unitRotationTransform;
         
         private bool _initialized;
 
-        public void Initialize(UnitContext unitContext)
+        public virtual void Initialize(UnitBrain unitBrain)
         {
             _initialized = true;
-            _unitContext = unitContext;
+            _unitBrain = unitBrain;
+            _unitRotationTransform = _unitBrain.GetUnitComponent<ViewHolderComponent>().Data.UnitR;
             
-            _cooldownTimer = new(_cooldown);
+            _cooldownTimer = new(BaseWeaponData.Cooldown);
             _cooldownTimer.Start();
         }
 

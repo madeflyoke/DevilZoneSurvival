@@ -2,7 +2,7 @@ using System;
 using Core.Items.Enum;
 using Core.Loot.Data;
 using Core.Loot.Enums;
-using Core.Scripts.Utils;
+using Core.Utils;
 using EasyButtons;
 using UnityEditor;
 using UnityEngine;

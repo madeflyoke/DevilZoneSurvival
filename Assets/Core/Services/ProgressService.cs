@@ -1,6 +1,6 @@
 using Core.Progress.Data;
 using Core.Progress.ViewModel;
-using Core.Scripts.Utils;
+using Core.Utils;
 using UnityEngine;
 
 namespace Core.Services

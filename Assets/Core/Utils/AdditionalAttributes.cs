@@ -1,6 +1,6 @@
 using System;
 
-namespace Core.Scripts.Utils
+namespace Core.Utils
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class ComponentNameAttribute : Attribute

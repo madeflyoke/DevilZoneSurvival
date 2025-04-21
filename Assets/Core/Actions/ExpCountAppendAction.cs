@@ -1,6 +1,7 @@
 using Core.Actions.Interfaces;
 using Core.Loot.Interfaces;
 using Core.Progress.ViewModel;
+using Core.Units.Components;
 
 namespace Core.Actions
 {

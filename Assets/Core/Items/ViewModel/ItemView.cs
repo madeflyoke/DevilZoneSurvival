@@ -1,6 +1,5 @@
 using Core.Items.Data;
 using Core.Items.Enum;
-using Core.Scripts.Utils;
 using Core.Utils;
 using R3;
 using TMPro;

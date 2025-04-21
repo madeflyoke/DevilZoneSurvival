@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using Core.Scripts.Units.Components;
-using Core.Scripts.Utils;
+using Core.Units.Components;
+using Core.Units.Components.Base;
 using Core.Units.UnitBrains;
+using Core.Utils;
 using UnityEditor;
 using UnityEngine;
 
@@ -35,7 +36,16 @@ public class UnitBrainEditor : Editor
             .Where(type => typeof(UnitComponentBase).IsAssignableFrom(type) && !type.IsAbstract && !type.IsInterface)
             .Select(t =>
             {
-                var attribute = (ComponentNameAttribute)t.GetCustomAttributes(typeof(ComponentNameAttribute)).First();
+                ComponentNameAttribute attribute;
+                try
+                {
+                    attribute =
+                        (ComponentNameAttribute)t.GetCustomAttributes(typeof(ComponentNameAttribute)).First();
+                }
+                catch
+                {
+                    throw new Exception($"No component name attribute found in type {t}");
+                }
 
                 return new TypeNamePair()
                 {

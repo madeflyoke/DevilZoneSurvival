@@ -1,4 +1,5 @@
-using Core.Scripts.Units.Components;
+using Core.Units.Components;
+using Core.Units.Components.Base;
 using UnityEditor;
 using UnityEngine;
 

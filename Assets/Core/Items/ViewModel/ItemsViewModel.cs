@@ -1,10 +1,11 @@
 using Core.Actions.Interfaces;
 using Core.Items.Enum;
+using Core.ViewModelData.Interfaces;
 using R3;
 
 namespace Core.Items.ViewModel
 {
-    public class ItemsViewModel : IActionReceiver
+    public class ItemsViewModel : IViewModel, IActionReceiver
     {
         private readonly ItemsModel _itemsModel;
 

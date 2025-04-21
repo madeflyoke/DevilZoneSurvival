@@ -1,9 +1,10 @@
 using System;
-using Core.Scripts.Enums;
-using Core.Scripts.Utils;
+using Core.Enums;
+using Core.Units.Components.Base;
+using Core.Utils;
 using UnityEngine;
 
-namespace Core.Scripts.Units.Components
+namespace Core.Units.Components
 {
     [Serializable]
     public class PlayerMovementData : CData
@@ -11,19 +12,29 @@ namespace Core.Scripts.Units.Components
         public float Speed;
     }
     
-    [ComponentName("Player Movement")]
+    [ComponentName("PlayerMovementComponent")]
     [Serializable]
-    public class PlayerMovementComponent : UnitAbstractComponent<PlayerMovementData>
+    public class PlayerMovementComponent : UnitAbstractDataComponent<PlayerMovementData>
     {
+        private Transform _unitTransform;
+        private Transform _unitRotationTransform;
+
+        protected override void Construct()
+        {
+            base.Construct();
+            _unitTransform = _context.Brain.GetUnitComponent<ViewHolderComponent>().Data.UnitT;
+            _unitRotationTransform = _context.Brain.GetUnitComponent<ViewHolderComponent>().Data.UnitR;
+        }
+
         public override void Execute()
         {
             var directions = GetDirection();
             
-            var pos = _context.UnitT.position;
+            var pos = _unitTransform.position;
     
             if (directions == 0)
             {
-                _context.UnitT.position = pos;
+                _unitTransform.position = pos;
 
                 return;
             }
@@ -34,10 +45,10 @@ namespace Core.Scripts.Units.Components
             if (direction != Vector3.zero)
             {
                 var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                _context.UnitR.rotation = Quaternion.Euler(0f, 0f, angle);
+                _unitRotationTransform.rotation = Quaternion.Euler(0f, 0f, angle);
             }
     
-            _context.UnitT.position = MonoContext.Instance.Field.ClampedMoveInFieldZone(pos, _context.UnitT.localScale);
+            _unitTransform.position = GameplaySceneContext.Instance.Field.ClampedMoveInFieldZone(pos, _unitTransform.localScale);
         }
 
         private MovementDirection GetDirection()

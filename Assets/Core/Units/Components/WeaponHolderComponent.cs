@@ -1,21 +1,22 @@
 using System;
 using System.Collections.Generic;
-using Core.Scripts.Utils;
+using Core.Units.Components.Base;
+using Core.Utils;
 using Core.WeaponSystem;
 using UnityEngine;
 
-namespace Core.Scripts.Units.Components
+namespace Core.Units.Components
 {
     [Serializable]
-    public class WeaponCData : CData
+    public class WeaponHolderCData : CData
     {
         public List<Weapon> Weapons;
         public Transform WeaponContainer;
     }
     
-    [ComponentName("Weapon Holder")]
+    [ComponentName("WeaponHolderComponent")]
     [Serializable]
-    public class WeaponHolderComponent : UnitAbstractComponent<WeaponCData>
+    public class WeaponHolderComponent : UnitAbstractDataComponent<WeaponHolderCData>
     {
         public override void Execute()
         {

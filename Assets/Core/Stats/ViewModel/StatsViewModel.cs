@@ -1,11 +1,12 @@
 using Core.Actions.Interfaces;
 using Core.Items.Enum;
 using Core.Stats.Enum;
+using Core.ViewModelData.Interfaces;
 using R3;
 
 namespace Core.Stats.ViewModel
 {
-    public class StatsViewModel : IActionReceiver
+    public class StatsViewModel : IViewModel, IActionReceiver
     {
         private readonly StatsModel _statsModel;
 

@@ -1,33 +1,41 @@
 using System.Collections.Generic;
-using Core.Scripts.Units.Components;
-using Core.Scripts.Units.Models;
+using Core.Units.Components;
+using Core.Units.Components.Base;
+using Core.Units.Models;
 using UnityEngine;
 
 namespace Core.Units.UnitBrains
 {
     public class UnitBrain : MonoBehaviour
     {
-        public UnitContext UnitContext;
+        [SerializeField] protected UnitContext UnitContext;
     
         [Space]
         [SerializeReference] public List<UnitComponentBase> Components = new();
-    
-        private void Awake()
+        private bool _initialized;
+        
+        public virtual void Initialize()
         {
+            UnitContext.Brain = this;
             foreach (var component in Components)
             {
                 component.Initialize(UnitContext);
             }
+
+            _initialized = true;
         }
         
         private void Update()
         {
+            if (!_initialized)
+                return;
+            
             Components.ForEach(component => component.Execute());
         }
 
         public T GetUnitComponent<T>() where T : UnitComponentBase
         {
-            return Components.Find(component => component.GetType() == typeof(T)) as T;
+            return Components.Find(component => component is T) as T;
         }
     }
 }

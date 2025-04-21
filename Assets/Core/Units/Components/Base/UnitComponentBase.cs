@@ -1,9 +1,9 @@
 using System;
-using Core.Scripts.Units.Interfaces;
-using Core.Scripts.Units.Models;
+using Core.Units.Interfaces;
+using Core.Units.Models;
 using UnityEngine;
 
-namespace Core.Scripts.Units.Components
+namespace Core.Units.Components.Base
 {
     [Serializable]
     public abstract class UnitComponentBase : IUnitComponent

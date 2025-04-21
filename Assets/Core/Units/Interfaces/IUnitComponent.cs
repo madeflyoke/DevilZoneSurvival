@@ -1,4 +1,4 @@
-namespace Core.Scripts.Units.Interfaces
+namespace Core.Units.Interfaces
 {
     public interface IUnitComponent
     {

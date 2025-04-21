@@ -1,18 +1,21 @@
 using UnityEngine;
 
-public class MonoSingleton<T>: MonoBehaviour
+namespace Core.Utils
 {
-    public static T Instance;
-    
-    private void Awake()
+    public class MonoSingleton<T>: MonoBehaviour
     {
-        if (Instance != null)
+        public static T Instance;
+    
+        private void Awake()
         {
-            Destroy(gameObject);
+            if (Instance != null)
+            {
+                Destroy(gameObject);
             
-            return;
-        }
+                return;
+            }
         
-        Instance = GetComponent<T>();
+            Instance = GetComponent<T>();
+        }
     }
 }

@@ -1,6 +1,6 @@
 using System;
 
-namespace Core.Scripts.Enums
+namespace Core.Enums
 {
     [Flags]
     public enum MovementDirection

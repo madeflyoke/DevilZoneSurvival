@@ -4,6 +4,7 @@ using Core.Actions.Interfaces;
 using Core.Items.Enum;
 using Core.Items.ViewModel;
 using Core.Loot.Interfaces;
+using Core.Units.Components;
 
 namespace Core.Actions
 {

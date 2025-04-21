@@ -4,6 +4,7 @@ using Core.Loot.Interfaces;
 using Core.Rewards.Interfaces;
 using Core.Stats.Enum;
 using Core.Stats.ViewModel;
+using Core.Units.Components;
 using Core.Utils;
 
 namespace Core.Actions

@@ -1,7 +1,7 @@
 using Core.Items.Data;
 using Core.Items.ViewModel;
 using Core.Loot.Data;
-using Core.Scripts.Utils;
+using Core.Utils;
 using UnityEngine;
 
 namespace Core.Services

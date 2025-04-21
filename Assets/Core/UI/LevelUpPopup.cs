@@ -6,6 +6,8 @@ using Core.Progress.ViewModel;
 using Core.Rewards;
 using Core.Rewards.Data;
 using Core.Services;
+using Core.Units.Components.ModelComponents;
+using Core.Units.UnitBrains;
 using R3;
 using UnityEngine;
 
@@ -97,7 +99,7 @@ namespace Core.UI
 
         private void OnBuffSelected(IAction action)
         {
-            action.TryExecute(FindObjectOfType<PlayerDummyEntity>());
+            action.TryExecute(FindObjectOfType<PlayerBrain>().GetUnitComponent<ViewModelsHolderComponent>());
             Hide();
         }
     }

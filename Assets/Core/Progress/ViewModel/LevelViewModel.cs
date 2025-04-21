@@ -1,12 +1,13 @@
 using Core.Actions.Interfaces;
 using Core.Progress.Data;
 using Core.Services;
+using Core.ViewModelData.Interfaces;
 using R3;
 using UnityEngine;
 
 namespace Core.Progress.ViewModel
 {
-    public class LevelViewModel : IActionReceiver
+    public class LevelViewModel : IViewModel, IActionReceiver
     {
         private readonly LevelModel _levelModel;
         private PlayerProgressConfig ProgressConfig => _playerProgressConfig ??= ServiceLocator.Instance.ProgressService.ProgressConfig;

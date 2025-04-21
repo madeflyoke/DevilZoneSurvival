@@ -1,6 +1,5 @@
-using System.Collections.Generic;
 using Core.Actions.Interfaces;
-using Core.Loot.Data;
+using Core.Units.Components;
 
 namespace Core.Loot.Interfaces
 {

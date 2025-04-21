@@ -1,4 +1,4 @@
-namespace Core.Scripts.Utils
+namespace Core.Utils
 {
     public static class Constants
     {

@@ -1,12 +1,12 @@
 using System;
+using Core.Units.UnitBrains;
 using UnityEngine;
 
-namespace Core.Scripts.Units.Models
+namespace Core.Units.Models
 {
     [Serializable]
     public class UnitContext
     {
-        public Transform UnitT;
-        public Transform UnitR;
+        [HideInInspector] public UnitBrain Brain;
     }
 }

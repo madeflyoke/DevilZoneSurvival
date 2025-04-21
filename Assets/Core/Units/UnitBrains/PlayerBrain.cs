@@ -1,10 +1,13 @@
+using Core.Units.Components;
+
 namespace Core.Units.UnitBrains
 {
     public class PlayerBrain : UnitBrain
     {
-        private void Start()
+        public override void Initialize()
         {
-            MonoContext.Instance.CameraProvider.SetObjectToFollow(UnitContext.UnitT);
+            base.Initialize();
+            GameplaySceneContext.Instance.CameraProvider.SetObjectToFollow(UnitContext.Brain.GetUnitComponent<ViewHolderComponent>().Data.UnitT);
         }
     }
 }

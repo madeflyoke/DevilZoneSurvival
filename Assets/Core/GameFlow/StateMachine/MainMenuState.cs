@@ -1,5 +1,5 @@
 using Core.GameFlow.StateMachine.Interfaces;
-using Core.Scripts.Utils;
+using Core.Utils;
 using UnityEngine.SceneManagement;
 
 namespace Core.GameFlow.StateMachine
